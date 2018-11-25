@@ -1164,6 +1164,15 @@ int esp_http_client_get_content_length(esp_http_client_handle_t client)
     return client->response->content_length;
 }
 
+int esp_http_client_get_location(esp_http_client_handle_t client, char **location)
+{
+    if (client->location) {
+        *location = client->location;
+        return strlen(client->location);
+    }
+    return 0;
+}
+
 bool esp_http_client_is_chunked_response(esp_http_client_handle_t client)
 {
     return client->response->is_chunked;
